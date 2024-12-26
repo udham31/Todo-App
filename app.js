@@ -7,6 +7,7 @@ const app =express ();
 mongoose.connect("mongodb://localhost/todo_list",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
 });
 
 //middle ware 
