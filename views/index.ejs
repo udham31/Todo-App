@@ -1,0 +1,37 @@
+<%- include("./partials/header") %>
+<nav class="navbar navbar-light bg-primary py-3 justify-content-center rounded m-1">
+    <a class="navbar-brand text-white" href="/" style="font-size: 2.75rem; letter-spacing: 1px; font-family: 'Poppins', sans-serif;">Todo App</a>
+</nav>
+
+<div class="container mt-5 " style="font-family: 'Poppins', sans-serif;">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h3 class="text-center text-primary mb-4">Manage Your Tasks</h3>
+            <form action="/add/todo" method="POST" class="d-flex">
+                <input type="text" name="todo" class="form-control" placeholder="Enter Todo" required>
+                <button type="submit" class="btn btn-md btn-primary mx-2" style="font-family: 'Poppins', sans-serif;">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="my-5" style="font-family: 'Poppins', sans-serif;">
+        <h4 class="text-center text-secondary">Your Todo List</h4>
+        <ul class="list-group">
+            <% if (todo.length === 0) { %>
+                <li class="list-group-item text-center text-muted">No Todos Available</li>
+            <% } else { %>
+                <% todo.forEach(todos => { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><%= todos.todo %></span>
+                    <div style="font-family: 'Poppins', sans-serif;">
+                        <a href="/edit/todo/<%= todos._id %>" class="btn btn-warning btn-sm mx-1">Edit</a>
+                        <a href="/delete/todo/<%= todos._id %>" class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+                </li>
+                <% }) %>
+            <% } %>
+        </ul>
+    </div>
+</div>
+
+<%- include("./partials/footer") %>
